@@ -1,4 +1,7 @@
 from django.shortcuts import render,HttpResponse
+from .models import Employee
+from rest_framework.renderers import JSONRenderer 
+from .serializers import EmployeeSerializer
 
 # Create your views here.
 def homePage(Request):
@@ -6,4 +9,6 @@ def homePage(Request):
 
 
 def getPage(Request):
-    return HttpResponse("Hello from the server")
+    data =Employee.objects.all()
+    dataSerializer = EmployeeSerializer(data, many=True)
+    return HttpResponse(JSONRenderer().render(dataSerializer.data), content_type ="application/json")
