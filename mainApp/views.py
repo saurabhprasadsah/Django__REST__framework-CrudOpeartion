@@ -8,6 +8,7 @@ def homePage(Request):
     return render(Request,'index.html')
 
 #get request from the serializer
+#use serializer
 def getPage(Request):
     data =Employee.objects.all()
     dataSerializer = EmployeeSerializer(data, many=True)
