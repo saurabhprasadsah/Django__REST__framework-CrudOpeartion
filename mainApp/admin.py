@@ -1,7 +1,8 @@
 from django.contrib import admin
-from models import Employee
+from .models import Employee
 # Register your models here.
 
-@admin.register()
+@admin.register(Employee)
 class Employee(admin.ModelAdmin):
     list_display=['id','name','email','phone','dsg','city', 'state', ]
+    
