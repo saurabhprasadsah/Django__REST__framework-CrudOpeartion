@@ -7,5 +7,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.homePage),
     path('employee/create/', views.createPage),
-    path('employee/getPage/', views.getPage)
+    path('employee/get/', views.getPage),
+    path('employee/get/<int:id>', views.getSinglePage)
 ]
