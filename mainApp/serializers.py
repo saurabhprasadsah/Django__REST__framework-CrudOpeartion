@@ -3,7 +3,7 @@ from .models import Employee
 # Create your serializer here.
 
 class EmployeeSerializer(serializers.Serializer):
-   # id = serializers.IntegerField()
+    id = serializers.IntegerField()
     name= serializers.CharField(max_length=30)
     email = serializers.CharField(max_length=20)
     phone =serializers.CharField(max_length=15)
