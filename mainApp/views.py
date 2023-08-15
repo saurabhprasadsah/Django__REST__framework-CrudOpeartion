@@ -54,6 +54,9 @@ def deletePage(Request, id):
         pass    
     return HttpResponse(JSONRenderer().render({'result':"done", "message":"Record is delete"}), content_type ="application/json")
 
+
+
+#when we call the restapi then pass the value will be "search":saurabh
 @csrf_exempt
 def SearchPage(Request):
     stream = io.BytesIO(Request.body)
