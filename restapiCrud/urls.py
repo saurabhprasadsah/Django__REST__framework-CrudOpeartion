@@ -6,5 +6,6 @@ from mainApp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.homePage),
+    path('employee/create/', views.createPage),
     path('employee/getPage/', views.getPage)
 ]
