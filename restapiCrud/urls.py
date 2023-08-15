@@ -10,7 +10,7 @@ urlpatterns = [
     path('employee/get/', views.getPage),
     path('employee/get/<int:id>', views.getSinglePage),
     path('employee/delete/<int:id>', views.deletePage),
-    path('employee/search/', views.searchPage)
+    path('employee/search/', views.SearchPage)
 
 
 ]

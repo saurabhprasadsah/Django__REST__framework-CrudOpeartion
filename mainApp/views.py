@@ -55,12 +55,12 @@ def deletePage(Request, id):
     return HttpResponse(JSONRenderer().render({'result':"done", "message":"Record is delete"}), content_type ="application/json")
 
 @csrf_exempt
-def searchPage(Request):
+def SearchPage(Request):
     stream = io.BytesIO(Request.body)
     pythonData= JSONParser().parse(stream)
-    search = pythonData['earch']  
+    search = pythonData['search']  
     data = Employee.objects.filter(Q(name__icontains=search)|Q(email=search)|Q(phone=search)|Q(city=search)|Q(state=search)) 
-    dataSerializer = EmployeeSerializer(data, many=True)
+    dataSerializer = EmployeeSerializer(data,many=True)
     return HttpResponse(JSONRenderer().render(dataSerializer.data), content_type ="application/json")
 
 
