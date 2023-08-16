@@ -1,18 +1,18 @@
 from django.shortcuts import render,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
-
 from rest_framework.renderers import JSONRenderer 
 from rest_framework.parsers import JSONParser
-
 from .models import Employee
 from .serializers import EmployeeSerializer
-
 import io
+
+
 # Create your views here.
 def homePage(Request):
     return render(Request,'index.html')
 
+#use decorator
 @csrf_exempt
 def createPage(Request):
     stream = io.BytesIO(Request.body)
@@ -29,13 +29,12 @@ def createPage(Request):
 
 #get request from the serializer
 #use serializer
-
-
 @csrf_exempt
 def getPage(Request):
     data =Employee.objects.all()
     dataSerializer = EmployeeSerializer(data, many=True)
     return HttpResponse(JSONRenderer().render(dataSerializer.data), content_type ="application/json")
+
 
 def getSinglePage(Request,id):
     try:
@@ -44,6 +43,7 @@ def getSinglePage(Request,id):
         return HttpResponse(JSONRenderer().render(dataSerializer.data), content_type ="application/json")
     except:
         return HttpResponse(JSONRenderer().render({'result':"Fail", "message":"invalid id"}), content_type ="application/json")
+
 
 @csrf_exempt
 def deletePage(Request, id):
