@@ -66,6 +66,7 @@ def SearchPage(Request):
     dataSerializer = EmployeeSerializer(data,many=True)
     return HttpResponse(JSONRenderer().render(dataSerializer.data), content_type ="application/json")
 
-
+def update(Request):
+    pass
 
 
