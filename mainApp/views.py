@@ -18,7 +18,8 @@ def createPage(Request):
     stream = io.BytesIO(Request.body)
     pythonData = JSONParser().parse(stream)
     temp = Employee.objects.last()
-    pythonData.setdefault('id', temp.id+1)    
+    pythonData.setdefault('id', temp.id+1)  
+
     employeeSerializer= EmployeeSerializer(data=pythonData)
     if(employeeSerializer.is_valid()):
         employeeSerializer.save()
@@ -54,6 +55,23 @@ def deletePage(Request, id):
         pass    
     return HttpResponse(JSONRenderer().render({'result':"done", "message":"Record is delete"}), content_type ="application/json")
 
+@csrf_exempt
+def updatePage(Request):
+    stream = io.BytesIO(Request.body)
+    pythonData = JSONParser().parse(stream)
+    print(pythonData)
+    try:
+        emp = Employee.objects.get(id=pythonData['id'])
+        employeeSerializer= EmployeeSerializer(emp, data=pythonData,partial = True)
+        if(employeeSerializer.is_valid()):
+            employeeSerializer.save()
+            return HttpResponse(JSONRenderer().render({'result':" done", "message":"Record is updated!!!"}), content_type ="application/json")
+        else:
+            return HttpResponse(JSONRenderer().render({'result':"fail", "message":"Invalid data!!!"}), content_type ="application/json")
+
+    except:
+        return HttpResponse(JSONRenderer().render({'result':"Fail", "message":"Record not found"}), content_type ="application/json")
+    
 
 
 #when we call the restapi then pass the value will be "search":saurabh

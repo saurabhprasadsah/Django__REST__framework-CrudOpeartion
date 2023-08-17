@@ -9,6 +9,7 @@ urlpatterns = [
     path('employee/create/', views.createPage),
     path('employee/get/', views.getPage),
     path('employee/get/<int:id>', views.getSinglePage),
+    path('employee/update/', views.updatePage),
     path('employee/delete/<int:id>', views.deletePage),
     path('employee/search/', views.SearchPage)
 
