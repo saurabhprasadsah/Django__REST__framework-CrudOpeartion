@@ -16,10 +16,10 @@ def homePage(Request):
 @csrf_exempt
 def createPage(Request):
     stream = io.BytesIO(Request.body)
+   # print(stream)
     pythonData = JSONParser().parse(stream)
     temp = Employee.objects.last()
     pythonData.setdefault('id', temp.id+1)  
-
     employeeSerializer= EmployeeSerializer(data=pythonData)
     if(employeeSerializer.is_valid()):
         employeeSerializer.save()
@@ -54,6 +54,7 @@ def deletePage(Request, id):
     except:
         pass    
     return HttpResponse(JSONRenderer().render({'result':"done", "message":"Record is delete"}), content_type ="application/json")
+
 
 @csrf_exempt
 def updatePage(Request):
