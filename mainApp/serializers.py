@@ -31,5 +31,7 @@ class EmployeeSerializer(serializers.Serializer):
         if("state" is validated_data and validated_data['state'!=""]):
              instance.main = validated_data['state']   
 
-
         instance.save()       
+
+
+        
