@@ -12,11 +12,11 @@ import io
 def homePage(Request):
     return render(Request,'index.html')
 
+
 #use decorator
 @csrf_exempt
 def createPage(Request):
     stream = io.BytesIO(Request.body)
-   # print(stream)
     pythonData = JSONParser().parse(stream)
     temp = Employee.objects.last()
     pythonData.setdefault('id', temp.id+1)  
@@ -27,6 +27,7 @@ def createPage(Request):
     else:
         response={'result':"Fail",'message':"invalid data"}
     return HttpResponse(JSONRenderer().render(response), content_type="application/json")
+
 
 #get request from the serializer
 #use serializer
@@ -56,6 +57,8 @@ def deletePage(Request, id):
     return HttpResponse(JSONRenderer().render({'result':"done", "message":"Record is delete"}), content_type ="application/json")
 
 
+
+#update page
 @csrf_exempt
 def updatePage(Request):
     stream = io.BytesIO(Request.body)
