@@ -1,7 +1,7 @@
-
 from django.contrib import admin
 from django.urls import path
 from mainApp import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -12,6 +12,4 @@ urlpatterns = [
     path('employee/update/', views.updatePage),
     path('employee/delete/<int:id>', views.deletePage),
     path('employee/search/', views.SearchPage)
-
-
 ]

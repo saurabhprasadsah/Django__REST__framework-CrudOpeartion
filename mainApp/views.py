@@ -8,10 +8,10 @@ from .serializers import EmployeeSerializer
 import io
 
 
+
 # Create your views here.
 def homePage(Request):
     return render(Request,'index.html')
-
 
 #use decorator
 @csrf_exempt
@@ -75,8 +75,6 @@ def updatePage(Request):
     except:
         return HttpResponse(JSONRenderer().render({'result':"Fail", "message":"Record not found"}),content_type ="application/json")
     
-
-
 #when we call the restapi then pass the value will be "search":saurabh
 @csrf_exempt
 def SearchPage(Request):
@@ -86,8 +84,4 @@ def SearchPage(Request):
     data = Employee.objects.filter(Q(name__icontains=search)|Q(email=search)|Q(phone=search)|Q(city=search)|Q(state=search)) 
     dataSerializer = EmployeeSerializer(data,many=True)
     return HttpResponse(JSONRenderer().render(dataSerializer.data), content_type ="application/json")
-
-def update(Request):
-    pass
-
 
