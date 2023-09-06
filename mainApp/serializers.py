@@ -18,16 +18,22 @@ class EmployeeSerializer(serializers.Serializer):
     def update(self, instance,validated_data):
         if("name" is validated_data and validated_data['name'!=""]):
              instance.main = validated_data['name']
+
         if("email" is validated_data and validated_data['email'!=""]):
              instance.main = validated_data['email']    
+
         if("phone" is validated_data and validated_data['phone'!=""]):
-             instance.main = validated_data['phone']     
+             instance.main = validated_data['phone']  
+
         if("dsg" is validated_data and validated_data['dsg'!=""]):
              instance.main = validated_data['dsg'] 
+
         if("salary" is validated_data and validated_data['salary'!=""]):
-             instance.main = validated_data['salary']     
+             instance.main = validated_data['salary'] 
+
         if("city" is validated_data and validated_data['city'!=""]):
-             instance.main = validated_data['city']     
+             instance.main = validated_data['city']   
+               
         if("state" is validated_data and validated_data['state'!=""]):
              instance.main = validated_data['state']   
 
