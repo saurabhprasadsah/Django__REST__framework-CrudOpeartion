@@ -14,7 +14,7 @@ class EmployeeSerializer(serializers.Serializer):
 
     def create(self, validated_data):
         return Employee.objects.create(**validated_data)
-
+#update se name
     def update(self, instance,validated_data):
         if("name" is validated_data and validated_data['name'!=""]):
              instance.main = validated_data['name']

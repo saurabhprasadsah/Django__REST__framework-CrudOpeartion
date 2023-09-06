@@ -19,11 +19,13 @@ def createPage(Request):
     temp = Employee.objects.last()
     pythonData.setdefault('id', temp.id+1)  
     employeeSerializer= EmployeeSerializer(data=pythonData)
+    
     if(employeeSerializer.is_valid()):
         employeeSerializer.save()
         response={'result':"done",'message':"Record is created!"}
     else:
         response={'result':"Fail",'message':"invalid data"}
+
     return HttpResponse(JSONRenderer().render(response), content_type="application/json")
 
 
