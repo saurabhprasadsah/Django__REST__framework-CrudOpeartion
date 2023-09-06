@@ -7,8 +7,6 @@ from .models import Employee
 from .serializers import EmployeeSerializer
 import io
 
-
-
 # Create your views here.
 def homePage(Request):
     return render(Request,'index.html')
